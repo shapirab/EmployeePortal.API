@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataModels\Models\" />
-    <Folder Include="DataModels\Entities\" />
-    <Folder Include="DataModels\Dtos\" />
     <Folder Include="Services\MockImplementations\" />
     <Folder Include="Services\Implementations\" />
     <Folder Include="Services\ServiceInterfaces\" />
