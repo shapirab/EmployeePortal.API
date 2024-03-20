@@ -1,4 +1,6 @@
 using EmployeePortal.Data.DbContexts;
+using EmployeePortal.Data.Services.Implementations;
+using EmployeePortal.Data.Services.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,9 @@ builder.Services.AddDbContext<EmployeePortalDbContext>(
         builder.Configuration["ConnectionStrings:EmployeePortalDB"]));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 var app = builder.Build();
 
