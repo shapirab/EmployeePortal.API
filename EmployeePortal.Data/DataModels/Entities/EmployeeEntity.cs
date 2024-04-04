@@ -15,8 +15,9 @@ namespace EmployeePortal.Data.DataModels.Entities
         public int EmployeeId { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-        [ForeignKey("DepartmentId")]
+        
         public int DepartmentId { get; set; }
+        [ForeignKey("DepartmentId")]
         public required DepartmentEntity Department { get; set; }
         public DateTime? DateOfJoining { get; set; }
         public string? ProfileImage { get; set; }

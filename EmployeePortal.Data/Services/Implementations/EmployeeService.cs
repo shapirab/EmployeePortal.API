@@ -13,15 +13,22 @@ namespace EmployeePortal.Data.Services.Implementations
     public class EmployeeService : IEmployeeService
     {
         private readonly EmployeePortalDbContext context;
+        private readonly IDepartmentService departmentService;
 
-        public EmployeeService(EmployeePortalDbContext context)
+        public EmployeeService(EmployeePortalDbContext context, IDepartmentService departmentService)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.departmentService = departmentService ?? throw new ArgumentNullException(nameof(departmentService));
         }
 
         public async Task AddEmployeeAsync(EmployeeEntity employeeEntity)
         {
-            await context.Employees.AddAsync(employeeEntity);
+            DepartmentEntity? departmentEntity = 
+                await departmentService.GetDepartmentByIdAsync(employeeEntity.DepartmentId);
+            if(departmentEntity != null)
+            {
+                departmentEntity.Employees.Add(employeeEntity);
+            }
         }
 
         public async Task DeleteEmployeeAsync(int employeeID)
