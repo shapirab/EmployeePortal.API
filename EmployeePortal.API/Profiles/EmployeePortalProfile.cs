@@ -12,10 +12,12 @@ namespace EmployeePortal.API.Profiles
             CreateMap<EmployeeEntity, Employee>();
             CreateMap<Employee, EmployeeEntity>();
             CreateMap<EmployeeEntity, EmployeeDto>();
+            CreateMap<EmployeeDto, EmployeeEntity>();
             
             CreateMap<DepartmentEntity, Department>();
             CreateMap<Department, DepartmentEntity>();
             CreateMap<DepartmentEntity, DepartmentDto>();
+            CreateMap<DepartmentDto, DepartmentEntity>();
         }
     }
 }

@@ -52,9 +52,9 @@ namespace EmployeePortal.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> AddEmployee(Employee employee)
+        public async Task<ActionResult<bool>> AddEmployee(EmployeeDto employeeToAdd)
         {
-            EmployeeEntity employeeEntity = mapper.Map<EmployeeEntity>(employee);
+            EmployeeEntity employeeEntity = mapper.Map<EmployeeEntity>(employeeToAdd);
             await employeeService.AddEmployeeAsync(employeeEntity);
             return Ok(await employeeService.SaveChangesAsync());
         }
@@ -72,7 +72,7 @@ namespace EmployeePortal.API.Controllers
         }
 
         [HttpPut("{employeeID}")]
-        public async Task<ActionResult>UpdateEmployee(int employeeID, EmployeeDto updatedEmployee)
+        public async Task<ActionResult<bool>>UpdateEmployee(int employeeID, EmployeeDto updatedEmployee)
         {
             EmployeeEntity? employeeEntity = await employeeService.GetEmployeeByIdAsync(employeeID);
             if (employeeEntity == null)
@@ -80,8 +80,8 @@ namespace EmployeePortal.API.Controllers
                 return BadRequest("Employee with this id was not found");
             }
             mapper.Map(updatedEmployee, employeeEntity);
-            await employeeService.SaveChangesAsync();
-            return NoContent();
+            return(await employeeService.SaveChangesAsync());
+            //return NoContent();
         }
     }
 }

@@ -55,7 +55,8 @@ namespace EmployeePortal.Data.Services.Implementations
 
             int totalItemCount = await collection.CountAsync();
 
-            PaginationMetaData paginationMetadata = new PaginationMetaData(totalItemCount, pageSize, pageNumber);
+            PaginationMetaData paginationMetadata = 
+                new PaginationMetaData(totalItemCount, pageSize, pageNumber);
 
             var collectionToReturn = await collection.OrderBy(department => department.Name)
                 .Skip(pageSize * (pageNumber - 1))

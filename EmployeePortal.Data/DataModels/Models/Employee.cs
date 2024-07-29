@@ -8,7 +8,7 @@ namespace EmployeePortal.Data.DataModels.Models
 {
     public class Employee
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public int DepartmentId { get; set; }
